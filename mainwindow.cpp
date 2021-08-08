@@ -178,11 +178,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
         QHBoxLayout *layout = new QHBoxLayout();
-
-
-
-
-
         setLayout(layout);
 
         QTimer *timer = new QTimer(this);
@@ -200,7 +195,6 @@ MainWindow::MainWindow(QWidget *parent)
      long page_size_kb = sysconf(_SC_PAGE_SIZE) / 1024; // in case x86-64 is configured to use 2MB pages
      double rss = resident * page_size_kb;
      double shared_mem = share * page_size_kb;
-     //string semir=to_string(rss);
 
      ui->textBrowser_5->setText("Resident Set Size=  " + QString::number(rss) +"  kB/n"+ QString("\n") + "Shared Memory=  "+
                     QString::number(shared_mem)+ "  kB/n"+ QString("\n")+
@@ -211,71 +205,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-    QFile file ("/sys/class/net/enp0s3/address");
-    if (!file.open(QIODevice::ReadOnly))
-   QMessageBox::information(0,"info",file.errorString());
-           QTextStream in(&file);
-            ui->textBrowser->setText(in.readAll());
-}
-
-
-void MainWindow::on_pushButton_2_clicked()
-{
-
-    QFile file3 ("/sys/class/net/enp0s3/operstate");
-    if (!file3.open(QIODevice::ReadOnly))
-   QMessageBox::information(0,"info",file3.errorString());
-           QTextStream on(&file3);
-            ui->textBrowser_2->setText(on.readAll());
-
-            if (ui->textBrowser_2->toPlainText()=="up")
-
-            {ui->textBrowser_2->setTextBackgroundColor(Qt::green);}
-}
-
-void MainWindow::on_pushButton_3_clicked()
-{
-
-    pcap_if *all_devs;
-    pcap_if_t* single_dev;
-    char* errbuff[PCAP_ERRBUF_SIZE];
-    int getdevs = pcap_findalldevs(&all_devs, *errbuff);
-    if(getdevs == -1) { cout << "Erreur" << endl; }
-
-    single_dev = all_devs;
-
-    while(single_dev != NULL)
-    {
-        auto a = single_dev->addresses;
-                while(a != NULL)
-                {
-                    switch(a->addr->sa_family)
-                    {
-                        case AF_INET:
-                        { QString x;
-                        x=inet_ntoa(((struct sockaddr_in *)a->addr)->sin_addr);
-                            cout << inet_ntoa(((struct sockaddr_in *)a->addr)->sin_addr) << endl;
-                            ui->textBrowser_3->append(x);
-                            break;
-                        }
-                    }
-                  a = a->next;
-
-                }
-
-      single_dev = single_dev->next;
-
-
-
-
-
-    }
-
 }
 
 long GetAvailableSpace(const char* path)
@@ -304,7 +233,51 @@ QString sys()
 
 
 
-void MainWindow::on_pushButton_4_pressed()
+
+void MainWindow::on_pushButton_pressed()
 {
-  ui->textBrowser_4->setText(sys());
+    QFile file ("/sys/class/net/enp0s3/address");
+    if (!file.open(QIODevice::ReadOnly))
+   QMessageBox::information(0,"info",file.errorString());
+           QTextStream in(&file);
+            ui->textBrowser->setText("Mac Address: "+in.readAll());
+            pcap_if *all_devs;
+            pcap_if_t* single_dev;
+            char* errbuff[PCAP_ERRBUF_SIZE];
+            int getdevs = pcap_findalldevs(&all_devs, *errbuff);
+            if(getdevs == -1) { cout << "Erreur" << endl; }
+
+            single_dev = all_devs;
+
+            while(single_dev != NULL)
+            {
+                auto a = single_dev->addresses;
+                        while(a != NULL)
+                        {
+                            switch(a->addr->sa_family)
+                            {
+                                case AF_INET:
+                                { QString x;
+                                x=inet_ntoa(((struct sockaddr_in *)a->addr)->sin_addr);
+                                    cout << inet_ntoa(((struct sockaddr_in *)a->addr)->sin_addr) << endl;
+                                    ui->textBrowser_3->append("IP address:"+QString("\n")+x);
+                                    break;
+                                }
+                            }
+                          a = a->next;
+
+                        }
+
+              single_dev = single_dev->next;
+            }
+            QFile file3 ("/sys/class/net/enp0s3/operstate");
+            if (!file3.open(QIODevice::ReadOnly))
+           QMessageBox::information(0,"info",file3.errorString());
+                   QTextStream on(&file3);
+                    ui->textBrowser_2->setText("Port Status: "+on.readAll());
+}
+
+void MainWindow::on_pushButton_2_pressed()
+{
+    ui->textBrowser_4->setText(sys());
 }
