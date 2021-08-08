@@ -45,23 +45,29 @@ sudo apt install qt5-default
 ![QT-Ubuntu](https://user-images.githubusercontent.com/60946152/125772099-7acb035f-abc9-4588-a86e-8f4e85212fb8.PNG)
 ### 3.How to compile:
 After installing QT, you need to install the ZIP file of this project and extract it to a directory.
-![Extraction du dossier](https://user-images.githubusercontent.com/60946152/125772986-68160662-5a9e-47b7-bfcc-e35e4066509f.PNG)
 
 Then, you should open QT Creator and click on File/Open a file or a project:
 
 ![open a file or a project](https://user-images.githubusercontent.com/60946152/125775097-815c1ceb-0ab8-4b47-b16b-a8811e2f9f32.png)
 
-And you need to select the project that you've extracted.
+And you need to select the project that you've extracted and click on the button Build marked in RED
+
+![image](https://user-images.githubusercontent.com/60946152/128646474-19d65c4d-e43d-4624-9ed2-adb556b6a858.png)
+
+
 ### 4.How to run:
 
 After compiling the CPU Usage project and making sure that there are no problems in your code, click on RUN (Marked in Red)
 
-![How to compile](https://user-images.githubusercontent.com/60946152/125783062-b2429619-bf7f-4272-902b-a937fa72ee05.png)
+![image](https://user-images.githubusercontent.com/60946152/128646592-43b20596-649d-42a0-80df-a4b4b8960f22.png)
+
 
 ### 5.The application:
 After opening the project and running it, a window containing Push buttons (one for the Disk Space and another for the network informations), a progress bar to show the percentage of the CPU used and the system memory informations.
 
 ![1](https://user-images.githubusercontent.com/60946152/128646365-d9a2864d-2399-4ff6-9efb-a4dfbf60f69f.png)
+
+Click on the button Disk space and Network informations:
 
 ![2](https://user-images.githubusercontent.com/60946152/128646371-be623328-e961-46a3-8f78-d2037899a54c.png)
 
