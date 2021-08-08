@@ -65,11 +65,11 @@ After compiling the CPU Usage project and making sure that there are no problems
 ### 5.The application:
 After opening the project and running it, a window containing Push buttons (one for the Disk Space and another for the network informations), a progress bar to show the percentage of the CPU used and the system memory informations.
 
-![1](https://user-images.githubusercontent.com/60946152/128646365-d9a2864d-2399-4ff6-9efb-a4dfbf60f69f.png)
+![image](https://user-images.githubusercontent.com/60946152/128647186-d5f680d6-a1b1-45ee-8e61-4dcc87299b6d.png)
 
 Click on the button Disk space and Network informations:
 
-![2](https://user-images.githubusercontent.com/60946152/128646371-be623328-e961-46a3-8f78-d2037899a54c.png)
+![image](https://user-images.githubusercontent.com/60946152/128647200-28e2d6c8-f9bb-4748-9a67-eaadc3f53d70.png)
 
 
 
